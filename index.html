@@ -2,130 +2,393 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Adhitya Yellapu | Data Analyst Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: #000;
+            padding: 15px 0;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            color: #ffbd39 !important;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .hero h1 span { color: #ffbd39; }
+
+        /* Typing Animation */
+        #typing-animation {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffbd39;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 30px;
+            background-color: #fff;
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* --- About Section --- */
+        .about-section { padding: 80px 0; background: #fff; }
+        .about-info p span { font-weight: 600; min-width: 120px; display: inline-block; }
+        
+        .skill-mf .progress {
+            margin: .5rem 0 1.5rem 0;
+            border-radius: 5px;
+            height: 10px;
+            background-color: #e9ecef;
+        }
+        .skill-mf .progress .progress-bar { background-color: #ffbd39; }
+
+        /* --- Resume Section --- */
+        .resume-section { padding: 80px 0; background: #f8f9fa; }
+        .resume-wrap {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        .resume-wrap .date {
+            font-weight: 700;
+            font-size: 16px;
+            color: #ffbd39;
+        }
+        .resume-wrap h2 { font-size: 24px; font-weight: 700; margin-top: 10px; }
+        .resume-wrap .position { font-size: 18px; font-weight: 600; color: #555; }
+
+        /* --- Projects Section --- */
+        .project-section { padding: 80px 0; background: #fff; }
+        .project-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        .zoom-effect {
+            height: 250px;
+            overflow: hidden;
+            display: block;
+        }
+        .zoom-effect img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-out;
+        }
+        .zoom-effect:hover img { transform: scale(1.1); }
+        .project-text { padding: 25px; }
+        .project-text h3 { font-size: 20px; font-weight: 700; }
+        .project-text h3 a { color: #000; text-decoration: none; transition: color 0.3s; }
+        .project-text h3 a:hover { color: #ffbd39; }
+
+        /* --- Contact Section --- */
+        .contact-section { padding: 80px 0; background: #f8f9fa; }
+        .box { background: #fff; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); height: 100%; }
+        .box .icon { font-size: 40px; color: #ffbd39; margin-bottom: 20px; }
+        .box a { color: #555; text-decoration: none; }
+        .box a:hover { color: #ffbd39; }
+
+        /* Buttons & Utilities */
+        .btn-primary {
+            background-color: #ffbd39;
+            border-color: #ffbd39;
+            color: #000;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h1 { font-size: 40px; font-weight: 700; position: relative; display: inline-block; }
+        .section-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #ffbd39;
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200">
+<body data-bs-spy="scroll" data-bs-target="#ftco-navbar" data-bs-offset="100" tabindex="0">
 
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-blue-600 tracking-tighter">AY.</a>
-        <div class="hidden md:flex space-x-8 font-medium text-slate-600">
-            <a href="#about" class="hover:text-blue-600 transition">About</a>
-            <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
-            <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
+    <nav class="navbar navbar-expand-lg fixed-top" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Adhitya Yellapu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#home-section" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about-section" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#resume-section" class="nav-link">Resume</a></li>
+                    <li class="nav-item"><a href="#project-section" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#contact-section" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-200">Let's Talk</a>
     </nav>
 
-    <header class="container mx-auto px-6 py-20 md:py-32 flex flex-col items-center text-center">
-        <h1 class="text-5xl md:text-7xl font-bold text-slate-900 leading-tight mb-6">
-            Translating complex data <br> into <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">actionable strategy.</span>
-        </h1>
-        <p class="text-xl text-slate-600 mb-10 max-w-2xl">
-            I'm Adhitya Yellapu, a Data Analyst and Core Electrical Engineering student at Acharya Nagarjuna University. I build end-to-end data pipelines and uncover insights that drive business growth.
-        </p>
-        <div class="flex space-x-4">
-            <a href="#projects" class="bg-slate-900 text-white px-8 py-3 rounded-full font-medium hover:bg-slate-800 transition">View My Work</a>
-            <a href="https://github.com/ADHITYAYELLAPU" target="_blank" class="bg-white border border-slate-200 text-slate-700 px-8 py-3 rounded-full font-medium hover:bg-slate-50 transition flex items-center gap-2">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-    </header>
+    <section id="home-section" class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="subheading text-white-50 h5">Hello, Welcome to my Portfolio!</span>
+                    <h1 class="mb-4 mt-3 display-4 fw-bold">I'm <span>Adhitya Yellapu</span></h1>
+                    
+                    <div class="mb-4 d-flex align-items-center">
+                        <span id="typing-animation"></span><span class="typing-cursor"></span>
+                    </div>
 
-    <section id="projects" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2">Featured Analytics Projects</h2>
-            <p class="text-slate-500 mb-12">Real-world data, rigorous analysis, actionable results.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                    <div class="bg-orange-100 w-12 h-12 rounded-lg flex items-center justify-center text-orange-600 text-xl mb-6">
-                        <i class="fas fa-hamburger"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Swiggy Menu Data Analysis</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">Explored food delivery metrics to extract insights on menu trends, regional preferences, and strategic pricing models for restaurant partners.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Python</span>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Pandas</span>
-                    </div>
-                    <a href="https://github.com/ADHITYAYELLAPU/Swiggy-menu-data-analysis" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-1">Read Case Study <i class="fas fa-arrow-right text-sm"></i></a>
+                    <p class="mt-4">
+                        <a href="https://www.linkedin.com/in/adhitya-yellapu" target="_blank" class="btn btn-primary py-3 px-4 me-2">LinkedIn</a>  
+                        <a href="https://github.com/ADHITYAYELLAPU" target="_blank" class="btn btn-outline-light py-3 px-4">My Works</a>
+                    </p>
                 </div>
-
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                    <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center text-green-600 text-xl mb-6">
-                        <i class="fas fa-car-battery"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">EV Production Lifecycle</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">Analyzed the production lifecycle, supply chain constraints, and market expansion trends within the rapidly growing Electric Vehicle sector.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">SQL</span>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">PowerBI</span>
-                    </div>
-                    <a href="#" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-1">Read Case Study <i class="fas fa-arrow-right text-sm"></i></a>
-                </div>
-
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                    <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center text-purple-600 text-xl mb-6">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Retail Customer Retention</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">Deep dive into retail consumer data to understand purchasing behavior, segment buyers, and model strategies for maximizing lifetime retention revenue.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Excel</span>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Data Viz</span>
-                    </div>
-                    <a href="#" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-1">Read Case Study <i class="fas fa-arrow-right text-sm"></i></a>
-                </div>
-
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                    <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 text-xl mb-6">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Job Market Skill Demand</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">Evaluated thousands of current job postings to aggregate and identify the most highly sought-after competencies in today's shifting tech market.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Python</span>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Web Scraping</span>
-                    </div>
-                    <a href="#" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-1">Read Case Study <i class="fas fa-arrow-right text-sm"></i></a>
-                </div>
-                
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-                    <div class="bg-rose-100 w-12 h-12 rounded-lg flex items-center justify-center text-rose-600 text-xl mb-6">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">End-to-End Talent Acquisition</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">HR analytics project focused on optimizing the hiring pipeline, evaluating recruitment efficiency, and reducing time-to-hire through data-backed decisions.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Analytics</span>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Dashboarding</span>
-                    </div>
-                    <a href="#" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-1">Read Case Study <i class="fas fa-arrow-right text-sm"></i></a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-slate-900 text-white py-16 text-center">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-6">Ready to work together?</h2>
-            <p class="text-slate-400 mb-10 max-w-xl mx-auto">I am actively looking for Data Analyst and Business Intelligence roles where I can bring my technical skills and engineering mindset to the team.</p>
-            <div class="flex justify-center space-x-6 text-2xl mb-10">
-                <a href="https://www.linkedin.com/in/adhitya-yellapu" target="_blank" class="text-slate-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/ADHITYAYELLAPU" target="_blank" class="text-slate-400 hover:text-white transition"><i class="fab fa-github"></i></a>
-                <a href="mailto:y21ee3260@gmail.com" class="text-slate-400 hover:text-white transition"><i class="fas fa-envelope"></i></a>
+    <section class="about-section" id="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <div class="p-4 shadow-sm rounded bg-white border h-100">
+                        <div class="about-info mb-4">
+                            <p><span>Name:</span> Adhitya Yellapu</p>
+                            <p><span>Profile:</span> Data Analyst</p>
+                            <p><span>Education:</span> Core Electrical Engineering</p>
+                            <p><span>Location:</span> Vishakapatnam, Andhra Pradesh</p>
+                        </div>
+
+                        <div class="skill-mf">
+                            <p class="h5 mb-3 fw-bold">Skills</p>
+                            
+                            <div class="d-flex justify-content-between"><span>Python</span> <span>75%</span></div>
+                            <div class="progress"><div class="progress-bar" style="width: 75%"></div></div>
+                            
+                            <div class="d-flex justify-content-between"><span>SQL</span> <span>80%</span></div>
+                            <div class="progress"><div class="progress-bar" style="width: 80%"></div></div>
+                            
+                            <div class="d-flex justify-content-between"><span>Excel & Pandas</span> <span>90%</span></div>
+                            <div class="progress"><div class="progress-bar" style="width: 90%"></div></div>
+                            
+                            <div class="d-flex justify-content-between"><span>Power BI</span> <span>80%</span></div>
+                            <div class="progress"><div class="progress-bar" style="width: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <div class="section-title text-start mb-4">
+                        <h1 class="mb-4">About Me</h1>
+                    </div>
+                    <p>Welcome to my portfolio! I am an enthusiastic Data Analyst and current Core Electrical Engineering student at Acharya Nagarjuna University. I have a strong foundation in transforming raw data into meaningful insights that drive informed decision-making.</p>
+                    <p>My analytical journey has led me to build end-to-end data pipelines, predictive models, and interactive dashboards. Whether it's analyzing electric vehicle markets or tracking retail customer retention, I believe that no data is clean, but all data holds a valuable story if you know how to look.</p>
+                    
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="fas fa-check text-warning me-2"></i><strong>BI Tools:</strong> Microsoft Power BI, MS Excel</li>
+                        <li class="mb-2"><i class="fas fa-check text-warning me-2"></i><strong>Tech Stack:</strong> Python, SQL, Pandas, Jupyter</li>
+                        <li class="mb-2"><i class="fas fa-check text-warning me-2"></i><strong>Domains:</strong> Retail Analytics, Market Trends, Operations, Hr Operations</li>
+                    </ul>
+                </div>
             </div>
-            <p class="text-slate-600 text-sm">© 2026 Adhitya Yellapu. All rights reserved.</p>
+        </div>
+    </section>
+
+    <section class="resume-section" id="resume-section">
+        <div class="container">
+            <div class="section-title">
+                <h1>Resume & Education</h1>
+                <p class="text-muted mt-3">Combining engineering logic with advanced data analytics.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-4 fw-bold">Experience / Projects</h3>
+                    <div class="resume-wrap">
+                        <span class="date">Present</span>
+                        <h2>Freelance Data Analyst</h2>
+                        <span class="position">Independent Projects</span>
+                        <p class="mt-3">Focused on solving business problems using data analytics.</p>
+                        <ul class="mt-2">
+                            <li>Extracted actionable business insights for retail sales and customer retention.</li>
+                            <li>Designed comprehensive tracking and analysis reports for market demand.</li>
+                            <li>Skilled in data cleaning, exploratory data analysis (EDA), and data visualization.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3 class="mb-4 fw-bold">Education</h3>
+                    <div class="resume-wrap">
+                        <span class="date">Currently Pursuing</span>
+                        <h2>Core Electrical Engineering</h2>
+                        <span class="position">Acharya Nagarjuna University</span>
+                        <p class="mt-3">Developing a strong analytical and mathematical foundation while applying engineering principles to technical problem-solving and systems analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" id="project-section">
+        <div class="container">
+            <div class="section-title">
+                <h1>Featured Projects</h1>
+                <p class="text-muted mt-3">Below are my Data Analytics projects using Python, SQL, EDA, and Power BI.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <a href="https://github.com/ADHITYAYELLAPU/Swiggy-menu-data-analysis" target="_blank" class="zoom-effect">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Swiggy Analysis">
+                        </a>
+                        <div class="project-text">
+                            <h3><a href="https://github.com/ADHITYAYELLAPU/Swiggy-menu-data-analysis" target="_blank">Swiggy Menu Data Analysis</a></h3>
+                            <p class="text-muted mt-2">Explored food delivery metrics to extract insights on menu trends, regional preferences, and strategic pricing models.</p>
+                            <p class="mb-0 fw-bold" style="font-size: 14px;">Tools: Python, Pandas, Data Viz</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <a href="#" target="_blank" class="zoom-effect">
+                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=800&auto=format&fit=crop" alt="EV Analysis">
+                        </a>
+                        <div class="project-text">
+                            <h3><a href="#" target="_blank">EV Production Lifecycle</a></h3>
+                            <p class="text-muted mt-2">Analyzed the production lifecycle, supply chain constraints, and market expansion trends within the Electric Vehicle sector.</p>
+                            <p class="mb-0 fw-bold" style="font-size: 14px;">Tools: Alteryx, Market Analysis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <a href="#" target="_blank" class="zoom-effect">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Retail Analysis">
+                        </a>
+                        <div class="project-text">
+                            <h3><a href="#" target="_blank">Retail Customer Retention</a></h3>
+                            <p class="text-muted mt-2">Deep dive into consumer data to understand purchasing behavior and model strategies for maximizing lifetime retention revenue.</p>
+                            <p class="mb-0 fw-bold" style="font-size: 14px;">Tools: Excel, Data Modeling</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="https://github.com/ADHITYAYELLAPU" target="_blank" class="btn btn-primary py-3 px-5">View All Projects on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h1>Contact Me</h1>
+                <p class="text-muted mt-3">Ready to find hidden data stories together? Reach out below!</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="box">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4 class="mb-3 fw-bold">Address</h4>
+                        <p>Vishakapatnam, Andhra Pradesh, India</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="box">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <h4 class="mb-3 fw-bold">Email</h4>
+                        <p><a href="mailto:y21ee3260@gmail.com">y21ee3260@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="box">
+                        <div class="icon"><i class="fab fa-linkedin"></i></div>
+                        <h4 class="mb-3 fw-bold">LinkedIn</h4>
+                        <p><a href="https://www.linkedin.com/in/adhitya-yellapu" target="_blank">Connect with me</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <div class="d-flex justify-content-center mb-3">
+                <a href="https://www.linkedin.com/in/adhitya-yellapu" target="_blank" class="text-white me-4 fs-4"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ADHITYAYELLAPU" target="_blank" class="text-white me-4 fs-4"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/VikramA05526893" target="_blank" class="text-white fs-4"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="mb-0">&copy; 2026 Adhitya Yellapu. All rights reserved.</p>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const texts = ['Data Analyst', 'Electrical Engineering Student', 'Problem Solver'];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            document.getElementById('typing-animation').textContent = letter;
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Pause before next word
+            } else {
+                setTimeout(type, 100); // Typing speed
+            }
+        }());
+    </script>
 </body>
 </html>
